@@ -3,10 +3,11 @@ import {Grid,Typography,Card,Box} from '@mui/material';
 import icon from '../Assests/profiles/connect.jpg';
 import axios from 'axios';
 import {Navigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 
 function Register() {
-    
+    const navigate = useNavigate()
     const username = useRef();
     const email = useRef();
     const phone = useRef();
@@ -31,8 +32,11 @@ function Register() {
           }
         }
     }
+    
+    const NavigateLogin=()=>{
+      navigate('/login');
+    }
       
-  
       return (
           <Grid container spacing={2}  direction="row" justifyContent="center"
           alignItems="center">
@@ -87,10 +91,10 @@ function Register() {
        ref={confirm} />
       </div>
 
-      <button type='submit' className='form-button'>Submit</button>
-    
-    
-    </form>
+      <button type='submit' className='form-button'>Register</button>
+      </form>
+
+    <button className='form-button' onClick={NavigateLogin}>Login</button>
 
       <div style={{color:"red"}} >
       {match? <p>Password should match</p>:<></>}
