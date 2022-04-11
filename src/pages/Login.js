@@ -3,9 +3,10 @@ import {Grid,Typography,Card,Box, CircularProgress} from '@mui/material';
 import icon from '../Assests/profiles/connect.jpg';
 import {loginCall} from './apiCalls';
 import {AuthContext} from '../Context/AuthContext';
-
+import {useNavigate} from 'react-router-dom';
 
 function Login() {
+  const navigate = useNavigate()
   const email = useRef();
   const password = useRef();
   let [message,setMessage] = useState('');
@@ -20,6 +21,10 @@ async function handleSubmit(event){
     dispatch )
   }
 
+  const NavigateRegister = ()=>{
+    navigate('/register');
+  }
+  
   return (
     <Grid container spacing={2}  direction="row" justifyContent="center"
           alignItems="center">
@@ -53,11 +58,13 @@ async function handleSubmit(event){
         </div>
       <button type='submit' className='form-button' onClick={handleSubmit}>Login</button>
       <div>Forgot Password ?</div>
-      <button type='submit' className='secondary-button' >Create an Account</button>
+      
       </form>
+
+      <button  className='secondary-button' onClick={NavigateRegister} >Create an Account</button>
+
       {isFetching ? (<CircularProgress color='inherit'/>):''}
       <h3 style={{color:'green'}}>{message}</h3>
-      {/* <Link to='/forgotpassword'>ForgotPassword</Link> */}
       
     </div>
     </div>
